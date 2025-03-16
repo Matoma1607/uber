@@ -4,45 +4,56 @@ document.addEventListener("DOMContentLoaded", () => {
     const tarifaTexto = document.getElementById("tarifaMostrar");
     const pagoLink = document.getElementById("pagoLink");
     const aliasTexto = document.getElementById("aliasTexto");
+    const btnUbicacion = document.getElementById("obtenerUbicacion");
+    const inputUbicacion = document.getElementById("ubicacionTexto");
+    const btnWhatsapp = document.getElementById("enviarWhatsapp");
 
-    // Alias de Mercado Pago (MODIFICAR CON EL REAL)
+    // **Alias de Mercado Pago (MODIFICAR CON EL REAL)**
     const aliasMP = "0000003100016853369708";
-    aliasTexto.innerText = aliasMP;
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         
         let destino = document.getElementById("destino").value.trim();
+
         if (!destino) {
             Swal.fire("Error", "Por favor, ingresa un destino válido.", "error");
             return;
         }
 
-        // Tarifa: Base $2000, aumento de $500 o $1000 según distancia estimada
-        let tarifa = 2000;
-        if (destino.length > 8) tarifa += 500; 
-        if (destino.length > 15) tarifa += 1000;
+        // Simulación de distancia aleatoria (de 1 a 10 km)
+        let distancia = Math.floor(Math.random() * 10) + 1;
 
-        // Enlace de pago con Mercado Pago
+        // Cálculo de tarifa: Mínimo $2000 + $500 o $1000 según distancia
+        let tarifa = 2000;
+        if (distancia > 5) {
+            tarifa += 1000;
+        } else {
+            tarifa += 500;
+        }
+
+        // Generar enlace de pago con Mercado Pago
         let urlPago = `https://link.mercadopago.com.ar/${aliasMP}`;
 
         // Mostrar información
         destinoTexto.innerHTML = `Destino: ${destino}`;
-        tarifaTexto.innerHTML = `Tarifa: $${tarifa.toFixed(2)}`;
+        tarifaTexto.innerHTML = `Tarifa: $${tarifa}`;
         pagoLink.href = urlPago;
+        aliasTexto.innerText = aliasMP;
     });
 
-    // Obtener ubicación del usuario y abrir en Google Maps
-    document.getElementById("ubicacionBtn").addEventListener("click", () => {
-        if ("geolocation" in navigator) {
+    btnUbicacion.addEventListener("click", () => {
+        if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    let lat = position.coords.latitude;
-                    let lon = position.coords.longitude;
-                    window.open(`https://www.google.com/maps?q=${lat},${lon}`, "_blank");
+                (pos) => {
+                    let lat = pos.coords.latitude;
+                    let lon = pos.coords.longitude;
+                    let urlUbicacion = `https://maps.google.com/?q=${lat},${lon}`;
+                    inputUbicacion.value = urlUbicacion;
+                    btnWhatsapp.disabled = false;
                 },
-                function (error) {
-                    alert("Error al obtener la ubicación: " + error.message);
+                (error) => {
+                    alert("No se pudo obtener la ubicación. Activa el GPS y revisa los permisos.");
                 }
             );
         } else {
@@ -50,25 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Enviar ubicación por WhatsApp
-    document.getElementById("whatsappUbicacion").addEventListener("click", () => {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    let lat = position.coords.latitude;
-                    let lon = position.coords.longitude;
-                    let mapsURL = `https://www.google.com/maps?q=${lat},${lon}`;
-                    let numeroChofer = "5493815755909";
-                    let mensaje = `Hola, aquí está mi ubicación para el viaje: ${mapsURL}`;
-                    let whatsappURL = `https://wa.me/${numeroChofer}?text=${encodeURIComponent(mensaje)}`;
-                    window.open(whatsappURL, "_blank");
-                },
-                function (error) {
-                    alert("Error al obtener la ubicación: " + error.message);
-                }
-            );
-        } else {
-            alert("Tu navegador no soporta geolocalización.");
-        }
+    btnWhatsapp.addEventListener("click", () => {
+        let ubicacion = inputUbicacion.value;
+        let mensaje = encodeURIComponent(`Hola, aquí está mi ubicación: ${ubicacion}`);
+        window.open(`https://wa.me/?text=${mensaje}`, "_blank");
     });
 });
