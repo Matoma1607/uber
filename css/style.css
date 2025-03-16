@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: white;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 22px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#resultado {
+    margin-top: 15px;
+}
+
+#pagoLink {
+    display: block;
+    margin-top: 10px;
+    color: #007BFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer {
+    margin-top: 20px;
+    background: #333;
+    color: white;
+    padding: 10px;
+}
+
+.creator {
+    color: #ffa500;
+    text-decoration: none;
+}
+
+.creator:hover {
+    text-decoration: underline;
+}
+
+/* Botón flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #25D366;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.whatsapp-float img {
+    width: 40px;
+    height: 40px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoViajes</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 MotoViajes - Transporte Personalizado</h1>
+        <form id="viajeForm">
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" required placeholder="Ej: Plaza Central">
+            
+            <button type="button" id="ubicacionBtn">📍 Obtener Ubicación</button>
+            <button type="button" id="whatsappUbicacion">📲 Enviar Ubicación por WhatsApp</button>
+            
+            <button type="submit">Calcular Tarifa</button>
+        </form>
+
+        <div id="resultado">
+            <p id="destinoMostrar"></p>
+            <p id="tarifaMostrar"></p>
+            <a id="pagoLink" target="_blank">💳 Pagar con Mercado Pago</a>
+            <p>CBU/Alias: <span id="aliasTexto"></span></p>
+            <p>💵 Se acepta efectivo</p>
+        </div>
+    </div>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5493811234567" class="whatsapp-float" target="_blank">
+        <img src="https://static.vecteezy.com/system/resources/previews/016/716/480/non_2x/whatsapp-icon-free-png.png" alt="WhatsApp">
+    </a>
+
+    <footer>
+        <p>🚀 MotoViajes - Servicio de transporte personalizado</p>
+        <p>Creado por <a href="https://www.instagram.com/tu_instagram" target="_blank" class="creator">Matías Salazar</a></p>
+    </footer>
+
+    <script src="./js/uber.js"></script>
+</body>
+</html>
