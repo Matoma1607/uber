@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuViaje</title>
+    <title>MotoViajes - Servicio Personalizado</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>TuViaje - Transporte Personalizado</h1>
+    <header>
+        <h1>MotoViajes - Tu viaje seguro</h1>
+    </header>
+
+    <main>
         <form id="viajeForm">
             <label for="destino">Destino:</label>
-            <input type="text" id="destino" required placeholder="Ej: Plaza Central">
-            
-            <button type="button" id="ubicacionBtn">📍 Obtener Ubicación</button>
-            <button type="button" id="whatsappUbicacion">📲 Enviar Ubicación por WhatsApp</button>
-            
+            <input type="text" id="destino" required>
+
+            <button type="button" id="obtenerUbicacion">Obtener ubicación</button>
+            <input type="text" id="ubicacionTexto" readonly placeholder="Ubicación aparecerá aquí">
+            <button type="button" id="enviarWhatsapp" disabled>Mandar ubicación por WhatsApp</button>
+
             <button type="submit">Calcular Tarifa</button>
         </form>
 
         <div id="resultado">
             <p id="destinoMostrar"></p>
             <p id="tarifaMostrar"></p>
-            <a id="pagoLink" target="_blank">💳 Pagar con Mercado Pago</a>
-            <p>CBU/Alias: <span id="aliasTexto"></span></p>
-            <p>💵 Se acepta efectivo</p>
+            <p>📌 <strong>Pago con Mercado Pago:</strong> <a id="pagoLink" href="#" target="_blank">Pagar aquí</a></p>
+            <p>💳 <strong>CBU/Alias:</strong> <span id="aliasTexto"></span></p>
+            <p>💵 <strong>Se acepta efectivo</strong></p>
         </div>
-    </div>
-
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/3815755909" class="whatsapp-float" target="_blank">
-        <img src="https://static.vecteezy.com/system/resources/previews/016/716/480/non_2x/whatsapp-icon-free-png.png" alt="WhatsApp">
-    </a>
+    </main>
 
     <footer>
-        <p>TuViaje - Servicio de transporte personalizado</p>
-        <p>Creado por <a href="https://www.instagram.com/smatias_n/" target="_blank" class="creator">Matías Salazar</a></p>
+        <p>🚀 MotoViajes - Servicio de transporte personalizado</p>
+        <p>Creado por <a href="https://www.instagram.com/tu_instagram" target="_blank" class="creator">Matías Salazar</a></p>
     </footer>
+
+    <a href="https://wa.me/5493815755909" class="whatsapp-button" target="_blank">
+        <img src="whatsapp-icon.png" alt="WhatsApp">
+    </a>
 
     <script src="./js/uber.js"></script>
 </body>
